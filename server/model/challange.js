@@ -4,6 +4,8 @@ const mongoose = require('mongoose')
 const challangeSchema = mongoose.Schema({
   playerOne: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
   playerOneCard: { type: mongoose.Schema.Types.ObjectId, ref: 'Card', required: true },
+
+  // TODO: do validation as game-round
   playerOneRounds: [{ type: mongoose.Schema.Types.ObjectId, ref: 'GameRound' }],
 
   playerOneProps: {
