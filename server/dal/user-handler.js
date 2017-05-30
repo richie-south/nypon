@@ -9,7 +9,7 @@ const Card = require('./card-handler.js')
  * @param  {string} lastName     [last name]
  * @return {object}              [user]
  */
-const createNewUser = (fbId, fbProfileImg, firstName, lastName) =>
+const createNewUser = (fbId, fbProfileImage, firstName, lastName) =>
   new User({
     fbId,
     fbProfileImage,
@@ -101,8 +101,7 @@ const createNewPlayerWithCard = async (fbId, fbProfileImg, firstName, lastName) 
   try {
     const user = createNewUser(fbId, fbProfileImg, firstName, lastName)
     const userDoc = await user.save()
-
-    const card = Card.createNewCard(myUserDoc._id, firstName, myUserDoc.fbProfileImg)
+    const card = Card.createNewCard(userDoc._id, firstName, userDoc.fbProfileImage)
     const cardDoc = await card.save()
 
     // TODO: Check 'user.card = card'
