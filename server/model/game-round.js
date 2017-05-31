@@ -1,5 +1,8 @@
 const mongoose = require('mongoose')
 
+// TODO: check each value isNr and is eather 0, 1, 2
+const arrayLimit = val => val.length === 3
+
 const gameRoundSchema = mongoose.Schema({
   abilitieTypeNumbers: {
     type: [Number],
@@ -11,6 +14,7 @@ const gameRoundSchema = mongoose.Schema({
     timestamps: true,
   })
 
-const arrayLimit = val => val.length > 3 || val.length < 3
+
+
 
 module.exports = mongoose.model('GameRound', gameRoundSchema)
