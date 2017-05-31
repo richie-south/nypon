@@ -34,7 +34,7 @@ const isNumberAndOverZero = compose(isNumber, isOverZero)
  * @param  {[type]}   ...args [arguments in array]
  * @return {[type]}           [fn results]
  */
-const validate = (validationFn) => (fn, ...args) => {
+const validate = (validationFn) => (fn) => (...args) => {
   args.forEach(validationFn)
   return fn(...args)
 }
