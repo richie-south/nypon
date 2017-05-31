@@ -3,12 +3,6 @@ const abilityCalculator = require('./ability-calculator')
 const ATTACK = 0
 const HEAL = 1
 const BLOCK = 2
-/*
-  const { createStore } = require('redux')
-  const rootReducer = require('./reducers/index')
-  const store = createStore(rootReducer, {
-
-  })*/
 
 const getBonus = (bonus, cardBonus) =>
   Object.assign({}, bonus, {
