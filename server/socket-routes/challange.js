@@ -4,7 +4,7 @@ const cardHandler = require('../dal/card-handler')
 const gameRoundHandler = require('../dal/game-round-handler')
 const challangeCalculator = require('../lib/challange-calculator')
 
-const newChallange = async (io, socket, playerOneSocketId, playerOneFbId, playerTwoSocketId, playerTwoFbId) => {
+const newChallange = async (playerOneFbId, playerTwoFbId) => {
   try {
     /**
    * playerOne, playerOneCard, playerTwo, playerTwoCard
@@ -43,10 +43,10 @@ const joinChallangeRoom = async (socket, challangeRoomId) => {
 }
 
 const isPlayerOne = (challange, fbId) =>
-  challange.playerOne._id.toString() === fbId
+  challange.playerOne.fbId.toString() === fbId
 
 const shouldRunChallange = (challange) =>
-  pureChallange.playerOneRounds.length === pureChallange.playerTwoRounds.length
+  challange.playerOneRounds.length === challange.playerTwoRounds.length
 
 
 const getLatestRounds = challange => {
@@ -59,16 +59,20 @@ const getLatestRounds = challange => {
 
 
 const runChallange = async (socket, challangeId, players) => {
+  try {
+    const challange = await challangeHandler.getChallangeById(challangeId)
+    const [playerOneRound, playerTwoRound] = getLatestRounds(challange)
 
-  const challange = await challangeHandler.getChallangeById(challangeId)
+    const roundResult = challangeCalculator.calculateChallange(
+      challange,
+      playerOneRound,
+      playerTwoRound,
+    )
 
-  const [playerOneRound, playerTwoRound] = getLatestRounds(challange)
-  const roundResult = challangeCalculator.calculateChallange(
-    challange,
-    playerOneRound,
-    playerTwoRound,
-  )
-
+    return roundResult
+  } catch (error) {
+    throw error
+  }
 
   /*if (isPlayerOne(challange, players[0].fbId)) {
     const [
@@ -101,17 +105,17 @@ const addChallangeRoundData = async (challangeId, fbId, abilities) => {
 
   const [challange, pureChallange, gameRound] = await Promise.all([
     challangeHandler.getChallangeById(challangeId),
-    challangeHandler.getChallangeByIdNoPopulate(),
+    challangeHandler.getChallangeByIdNoPopulate(challangeId),
     gameRoundHandler.newRoundData(abilities)]
   )
-
+  const round = await gameRound.save()
   // TODO: check if valid game round 
   // if user has that many abilitie cards left
 
   if (isPlayerOne(challange, fbId)) {
-    pureChallange.playerOneRounds.push(gameRound)
+    pureChallange.playerOneRounds.push(round)
   } else {
-    pureChallange.playerTwoRounds.push(gameRound)
+    pureChallange.playerTwoRounds.push(round)
   }
 
   await pureChallange.save()

@@ -19,6 +19,7 @@ const emptyBonus = () => ({
 })
 
 const c = (challangePart, playerOneRound, playerTwoRound, playerOneBonus, playerTwoBonus, counter = 0, abilitieRounds = []) => {
+  console.log('CCCCCCCCC')
   if (counter === playerOneRound.length) {
     return abilitieRounds
   }
@@ -197,14 +198,12 @@ const c = (challangePart, playerOneRound, playerTwoRound, playerOneBonus, player
   }
 
   const result = _()
-
   // TODO: check life?
-
-  c(challangePart, playerOneRound, playerTwoRound, counter + 1, abilitieRounds.concat(result))
+  return c(challangePart, playerOneRound, playerTwoRound, playerOneBonus, playerTwoBonus, counter + 1, abilitieRounds.concat(result))
 }
 
 const calculateChallange = (challange, playerOneRound, playerTwoRound) => {
-
+  console.log('calculateChallange')
   /*const {
     // playerOne,
     playerOneCard: {
@@ -228,11 +227,10 @@ const calculateChallange = (challange, playerOneRound, playerTwoRound) => {
       life: playerTwoLife,
     },
   } = challange*/
-  const challangePart = destructo(challange, 'playerOneCard', 'playerOneProps', 'playerTwoCard', 'playerTwoProps')
+  const challangePart = destructo(challange.toObject(), 'playerOneCard', 'playerOneProps', 'playerTwoCard', 'playerTwoProps')
 
   let playerOneBonus = emptyBonus()
   let playerTwoBonus = emptyBonus()
-
 
   const abilitieRounds = c(
     challangePart,
@@ -241,6 +239,7 @@ const calculateChallange = (challange, playerOneRound, playerTwoRound) => {
     playerOneBonus,
     playerTwoBonus
   )
+  return abilitieRounds
 
   //const abilitieAgainstAbilitieRounds = []
 
