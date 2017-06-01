@@ -1,0 +1,962 @@
+{
+  "blockOnBlock": {
+    "expected": [
+      {
+        "abilities": [
+          2,
+          2
+        ],
+        "roundResult": [
+          100,
+          100
+        ]
+      },
+      {
+        "abilities": [
+          2,
+          2
+        ],
+        "roundResult": [
+          100,
+          100
+        ]
+      },
+      {
+        "abilities": [
+          2,
+          2
+        ],
+        "roundResult": [
+          100,
+          100
+        ]
+      }
+    ],
+    "bonusPlayerOne": {
+      "attack": 0,
+      "heal": 0,
+      "block": 0
+    },
+    "bonusPlayerTwo": {
+      "attack": 0,
+      "heal": 0,
+      "block": 0
+    },
+    "playerOneRounds": [
+      2,
+      2,
+      2
+    ],
+    "playerTwoRounds": [
+      2,
+      2,
+      2
+    ],
+    "challange": {
+      "playerOneCard": {
+        "stats": {
+          "block": {
+            "heal": 0,
+            "bonusHeal": 0,
+            "attack": 0,
+            "bonusAttack": 0,
+            "block": 30,
+            "bonusBlock": 0
+          },
+          "heal": {
+            "heal": 20,
+            "bonusHeal": 0,
+            "attack": 0,
+            "bonusAttack": 10,
+            "block": 0,
+            "bonusBlock": 0
+          },
+          "attack": {
+            "heal": 0,
+            "bonusHeal": 0,
+            "attack": 40,
+            "bonusAttack": 0,
+            "block": 0,
+            "bonusBlock": 0
+          }
+        }
+      },
+      "playerOneProps": {
+        "life": 100,
+        "maxLife": 100
+      },
+      "playerTwoCard": {
+        "stats": {
+          "block": {
+            "heal": 0,
+            "bonusHeal": 0,
+            "attack": 0,
+            "bonusAttack": 0,
+            "block": 30,
+            "bonusBlock": 0
+          },
+          "heal": {
+            "heal": 20,
+            "bonusHeal": 0,
+            "attack": 0,
+            "bonusAttack": 10,
+            "block": 0,
+            "bonusBlock": 0
+          },
+          "attack": {
+            "heal": 0,
+            "bonusHeal": 0,
+            "attack": 40,
+            "bonusAttack": 0,
+            "block": 0,
+            "bonusBlock": 0
+          }
+        }
+      },
+      "playerTwoProps": {
+        "life": 100,
+        "maxLife": 100
+      }
+    }
+  },
+  "attackOnAttack": {
+    "expected": [
+      {
+        "abilities": [
+          0,
+          0
+        ],
+        "roundResult": [
+          75,
+          80
+        ]
+      },
+      {
+        "abilities": [
+          0,
+          0
+        ],
+        "roundResult": [
+          50,
+          60
+        ]
+      },
+      {
+        "abilities": [
+          0,
+          0
+        ],
+        "roundResult": [
+          25,
+          40
+        ]
+      }
+    ],
+    "bonusPlayerOne": {
+      "attack": 0,
+      "heal": 0,
+      "block": 0
+    },
+    "bonusPlayerTwo": {
+      "attack": 0,
+      "heal": 0,
+      "block": 0
+    },
+    "playerOneRounds": [
+      0,
+      0,
+      0
+    ],
+    "playerTwoRounds": [
+      0,
+      0,
+      0
+    ],
+    "challange": {
+      "playerOneCard": {
+        "stats": {
+          "block": {
+            "heal": 0,
+            "bonusHeal": 0,
+            "attack": 0,
+            "bonusAttack": 0,
+            "block": 30,
+            "bonusBlock": 0
+          },
+          "heal": {
+            "heal": 20,
+            "bonusHeal": 0,
+            "attack": 0,
+            "bonusAttack": 10,
+            "block": 0,
+            "bonusBlock": 0
+          },
+          "attack": {
+            "heal": 0,
+            "bonusHeal": 0,
+            "attack": 40,
+            "bonusAttack": 0,
+            "block": 0,
+            "bonusBlock": 0
+          }
+        }
+      },
+      "playerOneProps": {
+        "life": 100,
+        "maxLife": 100
+      },
+      "playerTwoCard": {
+        "stats": {
+          "block": {
+            "heal": 0,
+            "bonusHeal": 0,
+            "attack": 0,
+            "bonusAttack": 0,
+            "block": 30,
+            "bonusBlock": 0
+          },
+          "heal": {
+            "heal": 20,
+            "bonusHeal": 0,
+            "attack": 0,
+            "bonusAttack": 10,
+            "block": 0,
+            "bonusBlock": 0
+          },
+          "attack": {
+            "heal": 0,
+            "bonusHeal": 0,
+            "attack": 50,
+            "bonusAttack": 0,
+            "block": 0,
+            "bonusBlock": 0
+          }
+        }
+      },
+      "playerTwoProps": {
+        "life": 100,
+        "maxLife": 100
+      }
+    }
+  },
+  "healOnHeal": {
+    "expected": [
+      {
+        "abilities": [
+          1,
+          1
+        ],
+        "roundResult": [
+          30,
+          40
+        ]
+      },
+      {
+        "abilities": [
+          1,
+          1
+        ],
+        "roundResult": [
+          50,
+          70
+        ]
+      },
+      {
+        "abilities": [
+          1,
+          1
+        ],
+        "roundResult": [
+          70,
+          100
+        ]
+      }
+    ],
+    "bonusPlayerOne": {
+      "attack": 0,
+      "heal": 0,
+      "block": 0
+    },
+    "bonusPlayerTwo": {
+      "attack": 0,
+      "heal": 0,
+      "block": 0
+    },
+    "playerOneRounds": [
+      1,
+      1,
+      1
+    ],
+    "playerTwoRounds": [
+      1,
+      1,
+      1
+    ],
+    "challange": {
+      "playerOneCard": {
+        "stats": {
+          "block": {
+            "heal": 0,
+            "bonusHeal": 0,
+            "attack": 0,
+            "bonusAttack": 0,
+            "block": 30,
+            "bonusBlock": 0
+          },
+          "heal": {
+            "heal": 20,
+            "bonusHeal": 0,
+            "attack": 0,
+            "bonusAttack": 10,
+            "block": 0,
+            "bonusBlock": 0
+          },
+          "attack": {
+            "heal": 0,
+            "bonusHeal": 0,
+            "attack": 40,
+            "bonusAttack": 0,
+            "block": 0,
+            "bonusBlock": 0
+          }
+        }
+      },
+      "playerOneProps": {
+        "life": 10,
+        "maxLife": 100
+      },
+      "playerTwoCard": {
+        "stats": {
+          "block": {
+            "heal": 0,
+            "bonusHeal": 0,
+            "attack": 0,
+            "bonusAttack": 0,
+            "block": 30,
+            "bonusBlock": 0
+          },
+          "heal": {
+            "heal": 30,
+            "bonusHeal": 0,
+            "attack": 0,
+            "bonusAttack": 10,
+            "block": 0,
+            "bonusBlock": 0
+          },
+          "attack": {
+            "heal": 0,
+            "bonusHeal": 0,
+            "attack": 40,
+            "bonusAttack": 0,
+            "block": 0,
+            "bonusBlock": 0
+          }
+        }
+      },
+      "playerTwoProps": {
+        "life": 10,
+        "maxLife": 100
+      }
+    }
+  },
+  "a000111": {
+    "expected": [
+      {
+        "abilities": [
+          0,
+          1
+        ],
+        "roundResult": [
+          100,
+          50
+        ]
+      },
+      {
+        "abilities": [
+          0,
+          1
+        ],
+        "roundResult": [
+          100,
+          10
+        ]
+      },
+      {
+        "abilities": [
+          0,
+          1
+        ],
+        "roundResult": [
+          100,
+          0
+        ]
+      }
+    ],
+    "bonusPlayerOne": {
+      "attack": 0,
+      "heal": 0,
+      "block": 0
+    },
+    "bonusPlayerTwo": {
+      "attack": 0,
+      "heal": 0,
+      "block": 0
+    },
+    "playerOneRounds": [
+      0,
+      0,
+      0
+    ],
+    "playerTwoRounds": [
+      1,
+      1,
+      1
+    ],
+    "challange": {
+      "playerOneCard": {
+        "stats": {
+          "block": {
+            "heal": 0,
+            "bonusHeal": 0,
+            "attack": 0,
+            "bonusAttack": 0,
+            "block": 30,
+            "bonusBlock": 0
+          },
+          "heal": {
+            "heal": 20,
+            "bonusHeal": 0,
+            "attack": 0,
+            "bonusAttack": 10,
+            "block": 0,
+            "bonusBlock": 0
+          },
+          "attack": {
+            "heal": 0,
+            "bonusHeal": 0,
+            "attack": 40,
+            "bonusAttack": 0,
+            "block": 0,
+            "bonusBlock": 0
+          }
+        }
+      },
+      "playerOneProps": {
+        "life": 100,
+        "maxLife": 100
+      },
+      "playerTwoCard": {
+        "stats": {
+          "block": {
+            "heal": 0,
+            "bonusHeal": 0,
+            "attack": 0,
+            "bonusAttack": 0,
+            "block": 30,
+            "bonusBlock": 0
+          },
+          "heal": {
+            "heal": 20,
+            "bonusHeal": 0,
+            "attack": 0,
+            "bonusAttack": 10,
+            "block": 0,
+            "bonusBlock": 0
+          },
+          "attack": {
+            "heal": 0,
+            "bonusHeal": 0,
+            "attack": 40,
+            "bonusAttack": 0,
+            "block": 0,
+            "bonusBlock": 0
+          }
+        }
+      },
+      "playerTwoProps": {
+        "life": 90,
+        "maxLife": 100
+      }
+    }
+  },
+  "a100200": {
+    "expected": [
+      {
+        "abilities": [
+          1,
+          2
+        ],
+        "roundResult": [
+          100,
+          100
+        ]
+      },
+      {
+        "abilities": [
+          0,
+          0
+        ],
+        "roundResult": [
+          80,
+          75
+        ]
+      },
+      {
+        "abilities": [
+          0,
+          0
+        ],
+        "roundResult": [
+          60,
+          55
+        ]
+      }
+    ],
+    "bonusPlayerOne": {
+      "attack": 0,
+      "heal": 0,
+      "block": 0
+    },
+    "bonusPlayerTwo": {
+      "attack": 0,
+      "heal": 0,
+      "block": 0
+    },
+    "playerOneRounds": [
+      1,
+      0,
+      0
+    ],
+    "playerTwoRounds": [
+      2,
+      0,
+      0
+    ],
+    "challange": {
+      "playerOneCard": {
+        "stats": {
+          "block": {
+            "heal": 0,
+            "bonusHeal": 0,
+            "attack": 0,
+            "bonusAttack": 0,
+            "block": 30,
+            "bonusBlock": 0
+          },
+          "heal": {
+            "heal": 20,
+            "bonusHeal": 0,
+            "attack": 0,
+            "bonusAttack": 10,
+            "block": 0,
+            "bonusBlock": 0
+          },
+          "attack": {
+            "heal": 0,
+            "bonusHeal": 0,
+            "attack": 40,
+            "bonusAttack": 0,
+            "block": 0,
+            "bonusBlock": 0
+          }
+        }
+      },
+      "playerOneProps": {
+        "life": 100,
+        "maxLife": 100
+      },
+      "playerTwoCard": {
+        "stats": {
+          "block": {
+            "heal": 0,
+            "bonusHeal": 0,
+            "attack": 0,
+            "bonusAttack": 0,
+            "block": 30,
+            "bonusBlock": 0
+          },
+          "heal": {
+            "heal": 20,
+            "bonusHeal": 0,
+            "attack": 0,
+            "bonusAttack": 10,
+            "block": 0,
+            "bonusBlock": 0
+          },
+          "attack": {
+            "heal": 0,
+            "bonusHeal": 0,
+            "attack": 40,
+            "bonusAttack": 0,
+            "block": 0,
+            "bonusBlock": 0
+          }
+        }
+      },
+      "playerTwoProps": {
+        "life": 100,
+        "maxLife": 100
+      }
+    }
+  },
+  "a110220": {
+    "expected": [
+      {
+        "abilities": [
+          1,
+          2
+        ],
+        "roundResult": [
+          100,
+          100
+        ]
+      },
+      {
+        "abilities": [
+          1,
+          2
+        ],
+        "roundResult": [
+          100,
+          100
+        ]
+      },
+      {
+        "abilities": [
+          0,
+          0
+        ],
+        "roundResult": [
+          80,
+          70
+        ]
+      }
+    ],
+    "bonusPlayerOne": {
+      "attack": 0,
+      "heal": 0,
+      "block": 0
+    },
+    "bonusPlayerTwo": {
+      "attack": 0,
+      "heal": 0,
+      "block": 0
+    },
+    "playerOneRounds": [
+      1,
+      1,
+      0
+    ],
+    "playerTwoRounds": [
+      2,
+      2,
+      0
+    ],
+    "challange": {
+      "playerOneCard": {
+        "stats": {
+          "block": {
+            "heal": 0,
+            "bonusHeal": 0,
+            "attack": 0,
+            "bonusAttack": 0,
+            "block": 30,
+            "bonusBlock": 0
+          },
+          "heal": {
+            "heal": 20,
+            "bonusHeal": 0,
+            "attack": 0,
+            "bonusAttack": 10,
+            "block": 0,
+            "bonusBlock": 0
+          },
+          "attack": {
+            "heal": 0,
+            "bonusHeal": 0,
+            "attack": 40,
+            "bonusAttack": 0,
+            "block": 0,
+            "bonusBlock": 0
+          }
+        }
+      },
+      "playerOneProps": {
+        "life": 100,
+        "maxLife": 100
+      },
+      "playerTwoCard": {
+        "stats": {
+          "block": {
+            "heal": 0,
+            "bonusHeal": 0,
+            "attack": 0,
+            "bonusAttack": 0,
+            "block": 30,
+            "bonusBlock": 0
+          },
+          "heal": {
+            "heal": 20,
+            "bonusHeal": 0,
+            "attack": 0,
+            "bonusAttack": 10,
+            "block": 0,
+            "bonusBlock": 0
+          },
+          "attack": {
+            "heal": 0,
+            "bonusHeal": 0,
+            "attack": 40,
+            "bonusAttack": 0,
+            "block": 0,
+            "bonusBlock": 0
+          }
+        }
+      },
+      "playerTwoProps": {
+        "life": 100,
+        "maxLife": 100
+      }
+    }
+  },
+  "a120220": {
+    "expected": [
+      {
+        "abilities": [
+          1,
+          2
+        ],
+        "roundResult": [
+          100,
+          100
+        ]
+      },
+      {
+        "abilities": [
+          2,
+          2
+        ],
+        "roundResult": [
+          100,
+          100
+        ]
+      },
+      {
+        "abilities": [
+          0,
+          0
+        ],
+        "roundResult": [
+          80,
+          75
+        ]
+      }
+    ],
+    "bonusPlayerOne": {
+      "attack": 0,
+      "heal": 0,
+      "block": 0
+    },
+    "bonusPlayerTwo": {
+      "attack": 0,
+      "heal": 0,
+      "block": 0
+    },
+    "playerOneRounds": [
+      1,
+      2,
+      0
+    ],
+    "playerTwoRounds": [
+      2,
+      2,
+      0
+    ],
+    "challange": {
+      "playerOneCard": {
+        "stats": {
+          "block": {
+            "heal": 0,
+            "bonusHeal": 0,
+            "attack": 0,
+            "bonusAttack": 0,
+            "block": 30,
+            "bonusBlock": 0
+          },
+          "heal": {
+            "heal": 20,
+            "bonusHeal": 0,
+            "attack": 0,
+            "bonusAttack": 10,
+            "block": 0,
+            "bonusBlock": 0
+          },
+          "attack": {
+            "heal": 0,
+            "bonusHeal": 0,
+            "attack": 40,
+            "bonusAttack": 0,
+            "block": 0,
+            "bonusBlock": 0
+          }
+        }
+      },
+      "playerOneProps": {
+        "life": 100,
+        "maxLife": 100
+      },
+      "playerTwoCard": {
+        "stats": {
+          "block": {
+            "heal": 0,
+            "bonusHeal": 0,
+            "attack": 0,
+            "bonusAttack": 0,
+            "block": 30,
+            "bonusBlock": 0
+          },
+          "heal": {
+            "heal": 20,
+            "bonusHeal": 0,
+            "attack": 0,
+            "bonusAttack": 10,
+            "block": 0,
+            "bonusBlock": 0
+          },
+          "attack": {
+            "heal": 0,
+            "bonusHeal": 0,
+            "attack": 40,
+            "bonusAttack": 0,
+            "block": 0,
+            "bonusBlock": 0
+          }
+        }
+      },
+      "playerTwoProps": {
+        "life": 100,
+        "maxLife": 100
+      }
+    }
+  },
+  "a010010": {
+    "expected": [
+      {
+        "abilities": [
+          0,
+          0
+        ],
+        "roundResult": [
+          80,
+          80
+        ]
+      },
+      {
+        "abilities": [
+          1,
+          1
+        ],
+        "roundResult": [
+          100,
+          100
+        ]
+      },
+      {
+        "abilities": [
+          0,
+          0
+        ],
+        "roundResult": [
+          75,
+          75
+        ]
+      }
+    ],
+    "bonusPlayerOne": {
+      "attack": 0,
+      "heal": 0,
+      "block": 0
+    },
+    "bonusPlayerTwo": {
+      "attack": 0,
+      "heal": 0,
+      "block": 0
+    },
+    "playerOneRounds": [
+      0,
+      1,
+      0
+    ],
+    "playerTwoRounds": [
+      0,
+      1,
+      0
+    ],
+    "challange": {
+      "playerOneCard": {
+        "stats": {
+          "block": {
+            "heal": 0,
+            "bonusHeal": 0,
+            "attack": 0,
+            "bonusAttack": 0,
+            "block": 30,
+            "bonusBlock": 0
+          },
+          "heal": {
+            "heal": 20,
+            "bonusHeal": 0,
+            "attack": 0,
+            "bonusAttack": 10,
+            "block": 0,
+            "bonusBlock": 0
+          },
+          "attack": {
+            "heal": 0,
+            "bonusHeal": 0,
+            "attack": 40,
+            "bonusAttack": 0,
+            "block": 0,
+            "bonusBlock": 0
+          }
+        }
+      },
+      "playerOneProps": {
+        "life": 100,
+        "maxLife": 100
+      },
+      "playerTwoCard": {
+        "stats": {
+          "block": {
+            "heal": 0,
+            "bonusHeal": 0,
+            "attack": 0,
+            "bonusAttack": 0,
+            "block": 30,
+            "bonusBlock": 0
+          },
+          "heal": {
+            "heal": 20,
+            "bonusHeal": 0,
+            "attack": 0,
+            "bonusAttack": 10,
+            "block": 0,
+            "bonusBlock": 0
+          },
+          "attack": {
+            "heal": 0,
+            "bonusHeal": 0,
+            "attack": 40,
+            "bonusAttack": 0,
+            "block": 0,
+            "bonusBlock": 0
+          }
+        }
+      },
+      "playerTwoProps": {
+        "life": 100,
+        "maxLife": 100
+      }
+    }
+  }
+}
