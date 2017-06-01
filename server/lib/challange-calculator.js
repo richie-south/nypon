@@ -18,8 +18,7 @@ const emptyBonus = () => ({
   block: 0,
 })
 
-const c = (challangePart, playerOneRound, playerTwoRound, playerOneBonus, playerTwoBonus, counter = 0, abilitieRounds = []) => {
-  console.log('CCCCCCCCC')
+const _calculateChallange = (challangePart, playerOneRound, playerTwoRound, playerOneBonus, playerTwoBonus, counter = 0, abilitieRounds = []) => {
   if (counter === playerOneRound.length) {
     return abilitieRounds
   }
@@ -37,6 +36,8 @@ const c = (challangePart, playerOneRound, playerTwoRound, playerOneBonus, player
               roundResult: abilityCalculator.attackAndAttack(
                 challangePart.playerOneProps.life,
                 challangePart.playerOneCard.stats.attack.attack + playerOneBonus.attack,
+
+                challangePart.playerTwoProps.life,
                 challangePart.playerTwoCard.stats.attack.attack + playerTwoBonus.attack
               ),
             }
@@ -72,12 +73,10 @@ const c = (challangePart, playerOneRound, playerTwoRound, playerOneBonus, player
               roundResult: abilityCalculator.blockAndBlock(
                 challangePart.playerOneProps.life,
                 0,
-                challangePart.playerOneProps.maxLife,
                 challangePart.playerOneCard.stats.block.block + playerOneBonus.block,
 
                 challangePart.playerTwoProps.life,
                 0,
-                challangePart.playerTwoProps.maxLife,
                 challangePart.playerTwoCard.stats.block.block + playerTwoBonus.block
               ),
             }
@@ -109,7 +108,7 @@ const c = (challangePart, playerOneRound, playerTwoRound, playerOneBonus, player
           abilities: [ATTACK, HEAL],
           roundResult: abilityCalculator.attackAndHeal(
             challangePart.playerOneProps.life,
-            challangePart.playerOneCard.stats.attack.attack + playerTwoBonus.attack,
+            challangePart.playerOneCard.stats.attack.attack + playerOneBonus.attack,
             challangePart.playerTwoProps.life
           ),
         }
@@ -199,7 +198,7 @@ const c = (challangePart, playerOneRound, playerTwoRound, playerOneBonus, player
 
   const result = _()
   // TODO: check life?
-  return c(challangePart, playerOneRound, playerTwoRound, playerOneBonus, playerTwoBonus, counter + 1, abilitieRounds.concat(result))
+  return _calculateChallange(challangePart, playerOneRound, playerTwoRound, playerOneBonus, playerTwoBonus, counter + 1, abilitieRounds.concat(result))
 }
 
 const calculateChallange = (challange, playerOneRound, playerTwoRound) => {
@@ -232,7 +231,7 @@ const calculateChallange = (challange, playerOneRound, playerTwoRound) => {
   let playerOneBonus = emptyBonus()
   let playerTwoBonus = emptyBonus()
 
-  const abilitieRounds = c(
+  const abilitieRounds = _calculateChallange(
     challangePart,
     playerOneRound.abilitieTypeNumbers,
     playerTwoRound.abilitieTypeNumbers,
@@ -255,4 +254,5 @@ const calculateChallange = (challange, playerOneRound, playerTwoRound) => {
 
 module.exports = {
   calculateChallange,
+  _calculateChallange,
 }
