@@ -41,11 +41,7 @@ const connection = io => {
       const { socketId: playerTwoSocketId, fbId: playerTwoFbId } = clients[opponentClientId]
       try {
         const dataToSend = await challange.newChallange(
-          io,
-          socket,
-          playerOneSocketId,
           playerOneFbId,
-          playerTwoSocketId,
           playerTwoFbId
         )
 
