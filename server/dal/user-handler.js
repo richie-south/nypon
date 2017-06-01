@@ -83,11 +83,10 @@ const getUserCardByFbIdLean = fbId =>
  * @param  {string} fbId [facebook id of user]
  * @return {promise}      [resolves to array of card objects]
  */
-const getUserCardByFbId = fbId =>
-  User
-    .findOne({ fbId: fbId })
-    .populate('card')
-    .exec()
+const getUserCardByFbId = async fbId => {
+  const user = await User.findOne({ fbId }).exec()
+  return Card.getCardByCardId(user.card)
+}
 
 /**
  * [Creates a new user and asigns a new card to that user]
