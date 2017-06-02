@@ -202,39 +202,14 @@ const _calculateChallange = (challangePart, playerOneRound, playerTwoRound, play
 }
 
 const calculateChallange = (challange, playerOneRound, playerTwoRound) => {
-  console.log('calculateChallange')
-  /*const {
-    // playerOne,
-    playerOneCard: {
-      attack: playerOneAttack,
-      heal: playerOneHeal,
-      block: playerOneBlock,
-    },
-    playerOneProps: {
-      maxLife: playerOneMaxLife,
-      life: playerOneLife,
-    },
-
-    // playerTwo,
-    playerTwoCard: {
-      attack: playerTwoAttack,
-      heal: playerTwoHeal,
-      block: playerTwoBlock,
-    },
-    playerTwoProps: {
-      maxLife: playerTwoMaxLife,
-      life: playerTwoLife,
-    },
-  } = challange*/
   const challangePart = destructo(challange.toObject(), 'playerOneCard', 'playerOneProps', 'playerTwoCard', 'playerTwoProps')
-
   let playerOneBonus = emptyBonus()
   let playerTwoBonus = emptyBonus()
 
   const abilitieRounds = _calculateChallange(
     challangePart,
-    playerOneRound.abilitieTypeNumbers,
-    playerTwoRound.abilitieTypeNumbers,
+    playerOneRound,
+    playerTwoRound,
     playerOneBonus,
     playerTwoBonus
   )
