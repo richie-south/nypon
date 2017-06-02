@@ -86,9 +86,11 @@ const connection = io => {
         const pureChallange = await challange.addChallangeRoundData(challangeId, fbId, abilities)
 
         if (challange.shouldRunChallange(pureChallange)) {
-          const challangeResult = await challange.runChallange(
+
+          const challangeResult = await challange.runChallange(challangeId)
+          challange.sendRoundResults(
             socket,
-            challangeId,
+            challangeResult,
             getClientsByChallangeId(challangeId)
           )
         } else {
