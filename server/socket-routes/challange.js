@@ -3,12 +3,15 @@ const userHandler = require('../dal/user-handler')
 const cardHandler = require('../dal/card-handler')
 const gameRoundHandler = require('../dal/game-round-handler')
 const challangeCalculator = require('../lib/challange-calculator')
+const ATTACK = 0
+const HEAL = 1
+const BLOCK = 2
 
 const newChallange = async (playerOneFbId, playerTwoFbId) => {
   try {
     /**
-   * playerOne, playerOneCard, playerTwo, playerTwoCard
-   */
+     * playerOne, playerOneCard, playerTwo, playerTwoCard
+     */
     const playersAndCards = await Promise.all([
       userHandler.getUserByFbId(playerOneFbId),
       userHandler.getUserCardByFbId(playerOneFbId),
@@ -57,48 +60,108 @@ const getLatestRounds = challange => {
   ]
 }
 
+const getAbilitieCardsToRemove = (playerOneRound, playerOneProps, playerTwoRound, playerTwoProps) => {
+  const order = (round, props) => {
+    const abilities = round.reduce((collection, abilitie) => {
+      if (abilitie === ATTACK) {
+        collection[0] = collection[0] + 1
+      } else if (abilitie === HEAL) {
+        collection[1] = collection[1] + 1
+      } else {
+        collection[2] = collection[2] + 1
+      }
+      return collection
+    }, [0, 0, 0])
 
-const runChallange = async (socket, challangeId, players) => {
+    abilities[0] = props.attackCards - abilities[0]
+    abilities[1] = props.healCards - abilities[1]
+    abilities[2] = props.blockCards - abilities[2]
+    return abilities
+  }
+
+  return [
+    ...order(playerOneRound, playerOneProps),
+    ...order(playerTwoRound, playerTwoProps),
+  ]
+}
+
+const switchRound = round => ({
+  abilities: [
+    round.abilities[1],
+    round.abilities[0],
+  ],
+  roundResult: [
+    round.roundResult[1],
+    round.roundResult[0],
+  ]
+})
+
+const sendRoundResults = (socket, roundResult, players) => {
+  let playerOnePosition
+  let playerTwoPosition
+  if (isPlayerOne(challange, players[0].fbId)) {
+    playerOnePosition = 0
+    playerTwoPosition = 1
+  } else {
+    playerOnePosition = 1
+    playerTwoPosition = 0
+  }
+
+  /**
+   * 1. send each round result to each player seperatly
+   *  - check if somone has won 
+   *    - send gameover envent
+   *  - is last round? 
+   * 2. wait x times then do 1. again
+   * 
+   */
+
+  const runTimer = (time, round) =>
+    setTimeout(() => {
+      io.sockets.connected[
+        players[playerOnePosition].socketId
+      ].emit('abilitie-round-result', round)
+
+      io.sockets.connected[
+        players[playerTwoPosition].socketId
+      ].emit('abilitie-round-result', switchRound(round))
+    }, time)
+
+  roundResult.map((round, i) =>
+    runTimer(2000 * (i === 0 ? 1 : i + 1), round)
+  )
+}
+
+const runChallange = async (challangeId) => {
   try {
-    const challange = await challangeHandler.getChallangeById(challangeId)
-    const [playerOneRound, playerTwoRound] = getLatestRounds(challange)
 
-    const roundResult = challangeCalculator.calculateChallange(
-      challange,
-      playerOneRound,
-      playerTwoRound,
+    const challange = await challangeHandler.getChallangeById(challangeId)
+    const [
+      { abilitieTypeNumbers: playerOneRound }, { abilitieTypeNumbers: playerTwoRound }
+    ] = getLatestRounds(challange)
+
+    await challangeHandler.updateAbilitieCards(challangeId,
+      ...getAbilitieCardsToRemove(
+        playerOneRound,
+        challange.playerOneProps,
+        playerTwoRound,
+        challange.playerTwoProps
+      )
     )
 
+    const updatedChallange = await challangeHandler.getChallangeById(challangeId)
+    const roundResult = challangeCalculator.calculateChallange(
+      updatedChallange,
+      playerOneRound,
+      playerTwoRound
+    )
+
+    await challangeHandler.updateLife(challangeId, ...roundResult[roundResult.length - 1].roundResult)
     return roundResult
+
   } catch (error) {
     throw error
   }
-
-  /*if (isPlayerOne(challange, players[0].fbId)) {
-    const [
-      {
-        clientId: playerOneClientId,
-        socketId: playerOneSocketId,
-      },
-      {
-        clientId: playerTwoClientId,
-        socketId: playerTwoSocketId,
-      }
-    ] = players
-
-  } else {
-    const [
-      {
-        clientId: playerTwoClientId,
-        socketId: playerTwoSocketId,
-      },
-      {
-        clientId: playerOneClientId,
-        socketId: playerOneSocketId,
-      }
-    ] = players
-  }*/
-
 }
 
 const addChallangeRoundData = async (challangeId, fbId, abilities) => {
@@ -113,6 +176,7 @@ const addChallangeRoundData = async (challangeId, fbId, abilities) => {
   // if user has that many abilitie cards left
 
   if (isPlayerOne(challange, fbId)) {
+    // TODO: remove abilitie card nrs 
     pureChallange.playerOneRounds.push(round)
   } else {
     pureChallange.playerTwoRounds.push(round)
@@ -128,5 +192,6 @@ module.exports = {
   addChallangeRoundData,
   shouldRunChallange,
   runChallange,
+  sendRoundResults,
 }
 
