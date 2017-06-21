@@ -52,22 +52,25 @@ const getChallangeByIdNoPopulate = (id) =>
   Challange.findOne({ _id: id })
     .exec()
 
-const updateChallangeProps = (id,
-  { playerOneHealCards, playerOneAttackCards, playerOneBlockCards, playerOneMaxLife, playerOneLife,
-    playerTwoHealCards, playerTwoAttackCards, playerTwoBlockCards, playerTwoMaxLife, playerTwoLife,
-}) =>
+const updateLife = (id, playerOneLife, playerTwoLife) =>
+  Challange.update({ _id: id }, {
+    'playerOneProps.life': playerOneLife,
+    'playerTwoProps.life': playerTwoLife,
+  })
+    .exec()
+
+const updateAbilitieCards = (id,
+  playerOneAttackCards, playerOneHealCards, playerOneBlockCards,
+  playerTwoAttackCards, playerTwoHealCards, playerTwoBlockCards
+) =>
   Challange.update({ _id: id }, {
     'playerOneProps.healCards': playerOneHealCards,
     'playerOneProps.attackCards': playerOneAttackCards,
     'playerOneProps.blockCards': playerOneBlockCards,
-    'playerOneProps.maxLife': playerOneMaxLife,
-    'playerOneProps.life': playerOneLife,
 
     'playerTwoProps.healCards': playerTwoHealCards,
     'playerTwoProps.attackCards': playerTwoAttackCards,
     'playerTwoProps.blockCards': playerTwoBlockCards,
-    'playerTwoProps.maxLife': playerTwoMaxLife,
-    'playerTwoProps.life': playerTwoLife,
   })
     .exec()
 
@@ -81,6 +84,7 @@ module.exports = {
   getChallangeByIdLean,
   getChallangeByIdNoPopulate,
   getAllChallanges,
-  updateChallangeProps,
+  updateAbilitieCards,
+  updateLife,
   getCardsInChallange,
 }
