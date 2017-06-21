@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const mongodbUrl = process.env.MONGODB_URL
-
+//const testURL = 'mongodb://localhost/nypon'
 /**
  * [makes an mongoose databese connection]
  * [dispalys errors if any]
