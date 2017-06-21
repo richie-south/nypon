@@ -26,7 +26,7 @@ const connection = io => {
      */
     socket.on('client-props', ({ fbId }) => {
       clients[clientId].fbId = fbId
-
+      // TODO check fbId exists 
       socket.emit('connection-props', {
         clientId,
       })
@@ -44,9 +44,12 @@ const connection = io => {
           playerOneFbId,
           playerTwoFbId
         )
+        io.sockets.connected[playerOneSocketId].emit('join-new-challange', dataToSend)
+        io.sockets.connected[playerTwoSocketId].emit('join-new-challange', dataToSend)
 
-        socket.broadcast.to(playerOneSocketId).emit('join-new-challange', dataToSend)
-        socket.broadcast.to(playerTwoSocketId).emit('join-new-challange', dataToSend)
+        // old way
+        //socket.broadcast.to(playerOneSocketId).emit('join-new-challange', dataToSend)
+        //socket.broadcast.to(playerTwoSocketId).emit('join-new-challange', dataToSend)
 
       } catch (error) {
         console.log('ERROR: start-new-challange', error)
@@ -89,7 +92,7 @@ const connection = io => {
 
           const challangeResult = await challange.runChallange(challangeId)
           challange.sendRoundResults(
-            socket,
+            io,
             challangeResult,
             getClientsByChallangeId(challangeId)
           )
