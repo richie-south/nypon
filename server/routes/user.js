@@ -7,37 +7,35 @@ router
 
     //fbId, fbProfileImg, firstName, lastName
 
-    /*userHandler.createNewPlayerWithCard(
+    userHandler.createNewPlayerWithCard(
       'my__fbId',
       'my__fbProfileImage',
-      'richard',
-      'soderman'
+      'kalle',
+      'efternamn'
     ).then((a) => {
       res.json(a.toObject())
     }).catch(error => console.log('error', error))
-*/
 
-    gameRoundHandler.newRoundData([0, 1, 2])
+
+    /*gameRoundHandler.newRoundData([0, 1, 2])
       .save()
       .then((a) => {
         res.json(a.toObject())
-      }).catch(error => console.log('error', error))
+      }).catch(error => console.log('error', error))*/
 
   })
-
-/**
- * [creates new user]
- * @param  {[route]} '/user/create' []
- * @return {[object]}                [newly created user object]
- */
-router.route('/user/create')
-  .post((req, res) => {
+  /**
+   * [creates new user]
+   * @param  {[route]} '/user/create' []
+   * @return {[object]}                [newly created user object]
+   */
+  .post('/', (req, res) => {
 
     if (!req.body.hasOwnProperty('fbId') ||
       !req.body.hasOwnProperty('fbProfileImg') ||
       !req.body.hasOwnProperty('firstName') ||
       !req.body.hasOwnProperty('lastName')) {
-      res.status(400).send({ status: 'failed', message: 'invalid props' })
+      return res.status(400).send({ status: 'failed', message: 'invalid props' })
     }
     userHandler.createNewPlayerWithCard(
       req.body.fbId,
@@ -55,10 +53,10 @@ router.route('/user/create')
  * @param  {[route]} '/user/:fbid' [id of a user]
  * @return {[object]}         [object of user information]
  */
-router.route('/user/:fbid')
+router.route('/:fbid')
   .get((req, res) => {
 
-    userHandler.getAllUserDataByFbId(req.params.fbid)
+    userHandler.getFullUserByFbId(req.params.fbid)
       .then(result => {
         if (!result) {
           return res.status(404).send('404')
@@ -73,7 +71,7 @@ router.route('/user/:fbid')
  * @param  {[reoute]} '/user/cards/:fbid' [id of user]
  * @return {[array]}   [array of object with user cards]
  */
-router.route('/user/card/:fbid')
+router.route('/card/:fbid')
   .get((req, res) => {
     userHandler.getUserCardByFbId(req.params.fbid)
       .then(result => {
