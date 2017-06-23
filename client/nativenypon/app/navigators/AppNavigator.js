@@ -2,12 +2,14 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { addNavigationHelpers, StackNavigator } from 'react-navigation'
 import LoginScreen from '../pages/LoginScreen'
-import HomeScreen from '../pages/HomeScreen'
+import TabScreen from './tab-navigator'
 
 export const AppNavigator = StackNavigator({
   Login: { screen: LoginScreen },
-  Main: { screen: HomeScreen }
+  Main: { screen: TabScreen, headerMode: 'none' }
 
+}, {
+  //headerMode: 'none'
 })
 
 const AppWithNavigationState = ({ dispatch, nav }) => (
