@@ -4,13 +4,15 @@ import {persistStore, autoRehydrate} from 'redux-persist'
 import rootReducer from './reducers/index'
 
 const store = createStore(
-  rootReducer,
-  compose(
-    autoRehydrate()
+    rootReducer,
+    compose(
+      autoRehydrate()
+    )
   )
-)
 
-persistStore(store, {storage: AsyncStorage})
+  persistStore(store, {storage: AsyncStorage}, (error, state) => {
+    console.log('persistStore done:', state)
+  })
+
 
 export default store
-
