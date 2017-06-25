@@ -7,21 +7,21 @@ router
 
     //fbId, fbProfileImg, firstName, lastName
 
-    userHandler.createNewPlayerWithCard(
+    /*userHandler.createNewPlayerWithCard(
       'my__fbId',
       'my__fbProfileImage',
       'kalle',
       'efternamn'
     ).then((a) => {
       res.json(a.toObject())
-    }).catch(error => console.log('error', error))
+    }).catch(error => console.log('error', error))*/
 
 
-    /*gameRoundHandler.newRoundData([0, 1, 2])
+    gameRoundHandler.newRoundData([0, 1, 2])
       .save()
       .then((a) => {
         res.json(a.toObject())
-      }).catch(error => console.log('error', error))*/
+      }).catch(error => console.log('error', error))
 
   })
   /**
