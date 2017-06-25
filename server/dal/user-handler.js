@@ -84,8 +84,13 @@ const getUserCardByFbIdLean = fbId =>
  * @return {promise}      [resolves to array of card objects]
  */
 const getUserCardByFbId = async fbId => {
-  const user = await User.findOne({ fbId }).exec()
-  return Card.getCardByCardId(user.card)
+  try {
+    const user = await User.findOne({ fbId }).exec()
+    console.log(user)
+    return Card.getCardByCardId(user.card)  
+  } catch (error) {
+    throw error
+  }
 }
 
 /**
