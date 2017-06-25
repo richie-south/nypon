@@ -7,6 +7,19 @@ const clients = {}
 const getClientsByChallangeId = challangeId =>
   [R.filter(client => client.challangeId === challangeId, clients)]
 
+const switchPlayerOneWithPlayerTwo = challange => {
+  return Object.assign({}, challange, {
+    playerOne: challange.playerTwo,
+    playerOneCard: challange.playerTwoCard,
+    playerOneProps: challange.playerTwoProps,
+    playerOneRounds: challange.playerTwoRounds,
+    playerTwo: challange.playerOne,
+    playerTwoCard: challange.playerOneCard,
+    playerTwoProps: challange.playerOneProps,
+    playerTwoRounds: challange.playerOneRounds,
+  })
+}
+
 const connection = io => {
 
   io.sockets.on('connection', function (socket) {
@@ -37,21 +50,21 @@ const connection = io => {
      * Sends new challange to both clients
      */
     socket.on('start-new-challange', async ({ opponentClientId }) => {
+      console.log('starting new challange', opponentClientId)
+      
       const { socketId: playerOneSocketId, fbId: playerOneFbId } = clients[clientId]
-      const { socketId: playerTwoSocketId, fbId: playerTwoFbId } = clients[opponentClientId]
+      //const { socketId: playerTwoSocketId, fbId: playerTwoFbId } = clients[opponentClientId]
       try {
         const dataToSend = await challange.newChallange(
           playerOneFbId,
-          playerTwoFbId
+          'my__fbId'
+          //playerTwoFbId
         )
         io.sockets.connected[playerOneSocketId].emit('join-new-challange', dataToSend)
-        io.sockets.connected[playerTwoSocketId].emit('join-new-challange', dataToSend)
-
-        // old way
-        //socket.broadcast.to(playerOneSocketId).emit('join-new-challange', dataToSend)
-        //socket.broadcast.to(playerTwoSocketId).emit('join-new-challange', dataToSend)
+        //io.sockets.connected[playerTwoSocketId].emit('join-new-challange', switchPlayerOneWithPlayerTwo(dataToSend))
 
       } catch (error) {
+        // TODO: exit challange
         console.log('ERROR: start-new-challange', error)
       }
 
