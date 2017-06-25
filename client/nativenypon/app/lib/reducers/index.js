@@ -1,6 +1,9 @@
 import { combineReducers } from 'redux'
 import { user } from './user'
 import { auth } from './auth'
+import { challange } from './challange'
+import { initialLoading } from './initial-loading'
+import { abilityRoundData } from './ability-round-data'
 import { NavigationActions } from 'react-navigation'
 import { AppNavigator } from '../../navigators/AppNavigator'
 
@@ -20,16 +23,18 @@ function nav(state = initialNavState, action) {
         NavigationActions.back(),
         state
       )
-      break
     case 'Logout':
       return AppNavigator.router.getStateForAction(
         NavigationActions.navigate({ routeName: 'Login' }),
         state
       )
-      break
+    case 'Challange':
+      return AppNavigator.router.getStateForAction(
+        NavigationActions.navigate({ routeName: 'Challange' }),
+        state
+      )
     default:
       return AppNavigator.router.getStateForAction(action, state)
-      break
   }
 }
 
@@ -37,6 +42,9 @@ const rootReducer = combineReducers({
   nav,
   auth,
   user,
+  challange,
+  initialLoading,
+  abilityRoundData,
 })
 
 export default rootReducer
