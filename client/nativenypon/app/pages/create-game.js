@@ -2,10 +2,13 @@ import React from 'react'
 import { StyleSheet, Text, View, TextInput, Button } from 'react-native'
 import { compose, withProps, withHandlers, withState } from 'recompose'
 import { connect } from 'react-redux'
+//import store from '../lib/store'
 import socket from '../lib/socket/connection'
 import styles from './styles/create-game-styles'
+//import { NavigationActions } from 'react-navigation'
+import {startNewChallange} from '../lib/socket/connection'
 
-const statlessCreateGame = ({ setText }) => (
+const statlessCreateGame = ({ setText, inputText }) => (
   <View style={styles.container}>
     <TextInput
       style={styles.textInput}
@@ -14,7 +17,9 @@ const statlessCreateGame = ({ setText }) => (
       onSubmitEditing={() => { console.log('hey!')}}
     />
     <Button 
-      onPress={() => {}}
+      onPress={() => {
+        startNewChallange(inputText)
+      }}
       title='Create Game'
       color='#ff5722'
     />
