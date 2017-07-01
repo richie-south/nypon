@@ -21,17 +21,20 @@ export default StyleSheet.create({
     opponentCards: {
         position: 'absolute',
         top: 20,
-        left: (rWindow.width/2)-104,
+        left: (rWindow.width/2)-120,
+        /*flex: 1,
+        maxHeight: 114,*/
         flexDirection:'row',
         justifyContent: 'center',
         alignItems: 'center',
+        /*marginTop: 20,*/
     },
 
     // position of avtive cards
     activeCards: {
         flex: 1,
 
-        width: 199.5,
+        width: 242,
         alignItems:'center',
         justifyContent:'center'
 
@@ -55,10 +58,13 @@ export default StyleSheet.create({
     challangerCards: {
         position: 'absolute',
         bottom: 20,
-        left: (rWindow.width/2)-104,
+        left: (rWindow.width/2)-120,
+        /*flex: 1,
+        maxHeight: 104,*/
         flexDirection:'row',
         justifyContent: 'center',
         alignItems: 'center',
+        /*marginBottom: 10,*/
     },
 
 
@@ -67,14 +73,30 @@ export default StyleSheet.create({
     doneButton: {
         position: 'absolute',
         left: 8,
-        bottom: 24,
+        top: 24,
 
-        elevation: 2,
+        /*elevation: 2,
         borderRadius: 8,
-        backgroundColor: '#FFFFFF',
+        backgroundColor: '#FFFFFF',*/
 
         height: 50,
-        width: 80,
+        width: 70,
+    },
+
+     sendRoundButton: {
+        /*position: 'absolute',
+        left: 8,
+        bottom: 24,*/
+
+        position: 'absolute',
+        bottom: 20,
+        left: 8,
+
+        elevation: 2,/*
+        borderRadius: 8,
+        backgroundColor: '#FFFFFF',*/
+        height: 80,
+        width: 70,
     },
 
     doneButtonText: {
