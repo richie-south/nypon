@@ -1,11 +1,22 @@
 
 const shortid = require('shortid')
 const challange = require('./challange')
+const challangeHandler = require('../dal/challange-handler')
 const R = require('ramda')
+const plura = require('plura')
+const words = require('simple-words')
 const clients = {}
 
+/*const getClientsByChallangeId = challangeId =>
+  [R.filter(client => client.challangeId === challangeId, clients)]*/
+
 const getClientsByChallangeId = challangeId =>
-  [R.filter(client => client.challangeId === challangeId, clients)]
+  plura.reduce((a, b) => {
+      return a.concat(b)
+    }, 
+    [], 
+    plura.filter(client => client.challangeId === challangeId, clients)
+  )
 
 const switchPlayerOneWithPlayerTwo = challange => {
   return Object.assign({}, challange, {
@@ -24,7 +35,8 @@ const connection = io => {
 
   io.sockets.on('connection', function (socket) {
 
-    const clientId = shortid.generate()
+    //const clientId = shortid.generate().toLowerCase()
+    const clientId = words.one()
     clients[clientId] = {
       clientId,
       socketId: socket.id,
@@ -51,17 +63,16 @@ const connection = io => {
      */
     socket.on('start-new-challange', async ({ opponentClientId }) => {
       console.log('starting new challange', opponentClientId)
-      
-      const { socketId: playerOneSocketId, fbId: playerOneFbId } = clients[clientId]
-      //const { socketId: playerTwoSocketId, fbId: playerTwoFbId } = clients[opponentClientId]
+
       try {
+        const { socketId: playerOneSocketId, fbId: playerOneFbId } = clients[clientId]
+        const { socketId: playerTwoSocketId, fbId: playerTwoFbId } = clients[opponentClientId]
         const dataToSend = await challange.newChallange(
           playerOneFbId,
-          'my__fbId'
-          //playerTwoFbId
+          playerTwoFbId
         )
         io.sockets.connected[playerOneSocketId].emit('join-new-challange', dataToSend)
-        //io.sockets.connected[playerTwoSocketId].emit('join-new-challange', switchPlayerOneWithPlayerTwo(dataToSend))
+        io.sockets.connected[playerTwoSocketId].emit('join-new-challange', switchPlayerOneWithPlayerTwo(dataToSend))
 
       } catch (error) {
         // TODO: exit challange
@@ -76,7 +87,7 @@ const connection = io => {
     socket.on('join-challange-room', async ({ challangeRoomId }) => {
       try {
         const challangeProps = await challange.joinChallangeRoom(socket, challangeRoomId)
-        clients[clientId].challangeId = challangeProps._id
+        clients[clientId].challangeId = challangeProps._id.toString()
       } catch (error) {
         console.log('ERROR: join-challange-room', error)
       }
@@ -88,7 +99,6 @@ const connection = io => {
      */
     socket.on('ingame-round-abilitie-poistion', ({ isAdd, position }) => {
       const { challangeId: roomId } = clients[clientId]
-
       socket.broadcast.to(roomId).emit('ingame-round-abilitie-poistion', { isAdd, position })
     })
 
@@ -96,10 +106,12 @@ const connection = io => {
      * Recives game round data 
      */
     socket.on('challange-round-data', async ({ abilities }) => {
-
+      console.log('challange-round-data', abilities)
       const { challangeId, socketId, fbId } = clients[clientId]
+
       try {
         const pureChallange = await challange.addChallangeRoundData(challangeId, fbId, abilities)
+        const myChallange = await challangeHandler.getChallangeById(challangeId)
 
         if (challange.shouldRunChallange(pureChallange)) {
 
@@ -107,10 +119,12 @@ const connection = io => {
           challange.sendRoundResults(
             io,
             challangeResult,
-            getClientsByChallangeId(challangeId)
+            getClientsByChallangeId(challangeId),
+            myChallange
           )
         } else {
           // TODO: send timer event to opponent player
+          console.log('not equal yet!')
         }
 
       } catch (error) {
