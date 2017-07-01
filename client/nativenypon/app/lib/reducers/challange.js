@@ -160,6 +160,31 @@ export const challange = (state = {}, action) => {
       }
       return state
     }
+    case 'SET_PLAYER_ONE_LIFE': {
+      return {
+        ...state,
+          challange: {
+            ...state.challange,
+            playerOneProps: {
+              ...state.challange.playerOneProps,
+              life: action.payload
+            }
+          }
+        }
+    }
+
+    case 'SET_PLAYER_TWO_LIFE': {
+      return {
+        ...state,
+          challange: {
+            ...state.challange,
+            playerTwoProps: {
+              ...state.challange.playerTwoProps,
+              life: action.payload
+            }
+          }
+        }
+    }
     default:
       return state
   }
