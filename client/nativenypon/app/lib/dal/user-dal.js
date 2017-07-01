@@ -5,7 +5,7 @@ import config from '../../../config'
  
 export const getFacebookProfile =(accessToken) =>
   new Promise((resolve, reject) => {
-    const url = `https://graph.facebook.com/v2.9/me?fields=id%2Cfirst_name%2Cpicture.width(480).height(480)%7Burl%7D%2Clast_name&access_token=${accessToken}`
+    const url = `https://graph.facebook.com/v2.9/me?fields=id%2Cfirst_name%2Cpicture.width(95).height(95)%7Burl%7D%2Clast_name&access_token=${accessToken}`
     fetch(url)
     .then(response => {
       setTimeout(() => null, 0) // react native bugg workaround
