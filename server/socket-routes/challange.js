@@ -9,6 +9,7 @@ const BLOCK = 2
 
 const newChallange = async (playerOneFbId, playerTwoFbId) => {
   try {
+    console.log(playerOneFbId, playerTwoFbId)
     /**
      * playerOne, playerOneCard, playerTwo, playerTwoCard
      */
@@ -96,7 +97,7 @@ const switchRound = round => ({
   ]
 })
 
-const sendRoundResults = (socket, roundResult, players) => {
+const sendRoundResults = (io, roundResult, players, challange) => {
   let playerOnePosition
   let playerTwoPosition
   if (isPlayerOne(challange, players[0].fbId)) {
@@ -116,19 +117,31 @@ const sendRoundResults = (socket, roundResult, players) => {
    * 
    */
 
-  const runTimer = (time, round) =>
+  const runTimer = (time, round, position, isRoundDone) =>
     setTimeout(() => {
+      console.log('sends result', time, position, isRoundDone)
       io.sockets.connected[
         players[playerOnePosition].socketId
-      ].emit('abilitie-round-result', round)
+      ].emit('abilitie-round-result', {round, position})
 
       io.sockets.connected[
         players[playerTwoPosition].socketId
-      ].emit('abilitie-round-result', switchRound(round))
+      ].emit('abilitie-round-result', {round: switchRound(round), position})
+
+      if(isRoundDone){
+        setTimeout(() => {
+            io.sockets.connected[
+              players[playerOnePosition].socketId
+            ].emit('abilitie-round-done', {isRoundDone})
+          io.sockets.connected[
+              players[playerTwoPosition].socketId
+            ].emit('abilitie-round-done', {isRoundDone})
+        }, 2000)
+      }
     }, time)
 
   roundResult.map((round, i) =>
-    runTimer(2000 * (i === 0 ? 1 : i + 1), round)
+    runTimer(2000 * (i === 0 ? 1 : i + 1), round, i, i === roundResult.length-1)
   )
 }
 
