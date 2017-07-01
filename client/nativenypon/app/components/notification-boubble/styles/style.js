@@ -28,7 +28,7 @@ export default StyleSheet.create({
 
   notificationBottom: {
     bottom: -34,
-    right: 34,
+    right: 38,
     borderBottomLeftRadius: 44,
     borderBottomRightRadius: 44,
     borderTopLeftRadius: 44,
@@ -37,7 +37,7 @@ export default StyleSheet.create({
 
   notificationBottomReverse: {
     bottom: -34,
-    left: 34,
+    left: 38,
     borderBottomLeftRadius: 44,
     borderBottomRightRadius: 44,
     borderTopLeftRadius: 0,
@@ -46,7 +46,7 @@ export default StyleSheet.create({
 
   notificationTop: {
     top: -34,
-    right: 34,
+    right: 38,
     borderBottomLeftRadius: 44,
     borderBottomRightRadius: 0,
     borderTopLeftRadius: 44,
@@ -55,7 +55,7 @@ export default StyleSheet.create({
 
   notificationTopReverse: {
     top: -34,
-    left: 34,
+    left: 38,
     borderBottomLeftRadius: 0,
     borderBottomRightRadius: 44,
     borderTopLeftRadius: 44,

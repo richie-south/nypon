@@ -9,8 +9,8 @@ export default StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: '#FFFFFF',
     borderRadius: 8,
-    height: 78,
-    width: 60
+    height: 88,
+    width: 70,
   },
 
   cardElevetion: {
@@ -21,8 +21,8 @@ export default StyleSheet.create({
   },
 
   cardImage: {
-    height: 44,
-    width: 44
+    height: 52,
+    width: 52
   },
 
   cardCounter: {

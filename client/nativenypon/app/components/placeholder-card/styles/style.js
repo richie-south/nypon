@@ -13,14 +13,14 @@ export default StyleSheet.create({
     borderColor: 'rgba(99, 99, 99, 0.54)',
     borderRadius: 8,
     margin: 4,
-    height: 80.5,
-    width: 62.5,
+    height: 90.5,
+    width: 72.5,
   },
 
   placeholderImage: {
     height: 15,
     width: 15,
-    margin: 3
+    margin: 4
   },
 
   placeholderImageWrap: {
