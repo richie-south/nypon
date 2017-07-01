@@ -33,7 +33,7 @@ export default class ChallangeCard extends Component {
    * @return {[react component]}  [react image component]
    */
   getCardImage(cardType, isX) {
-    if (isX || (cardType == undefined && !isX)) {
+    if(cardType === 3) { // render x
       return type[3]
     }
     return type[cardType]
@@ -99,7 +99,7 @@ export default class ChallangeCard extends Component {
     return (
       <View style={[styles.playCard, this.hasShaddow(this.props.shadow), this.hasMargin(this.props.margin)]}>
         {this.getCardCounter(this.props.nr)}
-        {this.getCardImage(this.props.type, this.props.renderX)}
+        {this.getCardImage(this.props.type)}
       </View>
     )
   }
