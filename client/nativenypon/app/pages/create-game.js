@@ -8,8 +8,9 @@ import styles from './styles/create-game-styles'
 //import { NavigationActions } from 'react-navigation'
 import {startNewChallange} from '../lib/socket/connection'
 
-const statlessCreateGame = ({ setText, inputText }) => (
+const statlessCreateGame = ({ setText, inputText, clientId }) => (
   <View style={styles.container}>
+    <Text>ID: {clientId}</Text>
     <TextInput
       style={styles.textInput}
       onChangeText={(text) => setText(text)}
@@ -27,7 +28,14 @@ const statlessCreateGame = ({ setText, inputText }) => (
 )
 
 const CreateGame = compose(
-  withState('inputText', 'setText', '')
+  connect(({ user }) => ({
+    clientId: user.clientId
+  })),
+  withState('inputText', 'setText', ''),
+  WrappedComponent => ({ ...props }) =>
+    !props.clientId === ''
+      ? null
+      : <WrappedComponent {...props} />
   )(statlessCreateGame)
 
 CreateGame.navigationOptions = {
