@@ -3,6 +3,9 @@ import store from '../../lib/store'
 import {connectionDone} from '../../lib/action-creators/initial-loading'
 import {newChallange} from '../action-creators/challange'
 import { addClientId } from '../action-creators/user'
+import { addAbilityCardPlayerTwo, removeAbilityCardPlayerTwo, clearAbilityCards } from '../action-creators/ability-round-data'
+import { decreaseAbilityCardsPlayerTwo, setPlayerOneLife, setPlayerTwoLife } from '../action-creators/challange'
+
 import { NavigationActions } from 'react-navigation'
 
 
@@ -44,13 +47,32 @@ socket.on('connection-props', ({ clientId }) => {
 
 socket.on('join-new-challange', (data) => {
   console.log('join-new-challange', data)
-  socket.emit('join-challange-room', data._id)
+
+  // move this server side
+  socket.emit('join-challange-room', { challangeRoomId: data._id })
   store.dispatch(newChallange(data))
   store.dispatch(NavigationActions.navigate({ routeName: 'Challange' }))
 })
 
-socket.on('ingame-round-abilitie-poistion', (data) => {
+socket.on('ingame-round-abilitie-poistion', ({isAdd, position}) => {
+  console.log('reciving: ingame-round-abilitie-poistion', isAdd, position)
+  if(isAdd){
+    return store.dispatch(addAbilityCardPlayerTwo(3, position))
+  }
+  return store.dispatch(removeAbilityCardPlayerTwo(position))
+})
 
+socket.on('abilitie-round-result', ({round, position}) => {
+  const type = round.abilities[1]
+  const [playerOneLife, playerTwoLife] = round.roundResult
+  store.dispatch(addAbilityCardPlayerTwo(type, position))
+  store.dispatch(setPlayerOneLife(playerOneLife))
+  store.dispatch(setPlayerTwoLife(playerTwoLife))
+  store.dispatch(decreaseAbilityCardsPlayerTwo(type))
+})
+
+socket.on('abilitie-round-done', () => {
+  store.dispatch(clearAbilityCards())
 })
 
 export const sendIngameRoundAbilitiePoistion = (isAdd, position) => {
@@ -59,6 +81,10 @@ export const sendIngameRoundAbilitiePoistion = (isAdd, position) => {
 
 export const startNewChallange = opponentClientId => {
   socket.emit('start-new-challange', {opponentClientId})
+}
+
+export const sendRound = abilities => {
+  socket.emit('challange-round-data', {abilities})
 }
 
 

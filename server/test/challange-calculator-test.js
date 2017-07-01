@@ -156,4 +156,23 @@ describe('challange calculations', function () {
       bonusPlayerTwo
     )).to.deep.equal(expected)
   })
+
+  it('heal, attack, block, on heal, attack, block', function () {
+    const {
+      challange,
+      playerOneRounds,
+      playerTwoRounds,
+      bonusPlayerOne,
+      bonusPlayerTwo,
+      expected,
+    } = helperObjects.a102102
+
+    expect(cC._calculateChallange(
+      challange,
+      playerOneRounds,
+      playerTwoRounds,
+      bonusPlayerOne,
+      bonusPlayerTwo
+    )).to.deep.equal(expected)
+  })
 })
