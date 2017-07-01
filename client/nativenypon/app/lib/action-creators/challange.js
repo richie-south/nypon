@@ -23,3 +23,15 @@ export const increaseAbilityCardsPlayerTwo = type => ({
   type: 'INCREASE_ABILITY_CARDS_PLAYER_TWO',
   payload: type,
 })
+
+// LIFE
+
+export const setPlayerOneLife = life => ({
+  type: 'SET_PLAYER_ONE_LIFE',
+  payload: life,
+})
+
+export const setPlayerTwoLife = life => ({
+  type: 'SET_PLAYER_TWO_LIFE',
+  payload: life,
+})
