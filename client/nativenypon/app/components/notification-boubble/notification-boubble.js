@@ -4,10 +4,10 @@ import styles from './styles/style'
 
 const type = [
   (<Image
-    source={require('../../images/bottle_icon.png')}
+    source={require('../../images/sword_icon.png')}
     style={[styles.notificationImage, { tintColor: 'rgba(255, 255, 255, 1)' }]} />),
   (<Image
-    source={require('../../images/sword_icon.png')}
+    source={require('../../images/bottle_icon.png')}
     style={[styles.notificationImage, { tintColor: 'rgba(255, 255, 255, 1)' }]} />),
   (<Image
     source={require('../../images/shield_icon.png')}
@@ -56,10 +56,10 @@ export default class NotificationBoubble extends Component {
    * @return {[bool]}            [true or false if render]
    */
   doRender(beforeType, childType) {
-    if (beforeType[0] === 0 && childType === 1) {
+    if (beforeType[0] === 1 && childType === 0) {
       return true
     }
-    if (beforeType.length > 1 && beforeType[1] === 0 && childType === 1) {
+    if (beforeType.length > 1 && beforeType[1] === 1 && childType === 0) {
       return true
     }
     return false
@@ -123,12 +123,12 @@ export default class NotificationBoubble extends Component {
   isBottom(bottom) {
     return bottom ?
       false :
-      (<View>{this.props.children}</View>)
+      this.props.children
   }
 
   isTop(bottom) {
     return bottom ?
-      (<View>{this.props.children}</View>) :
+      this.props.children :
       false
   }
 }
